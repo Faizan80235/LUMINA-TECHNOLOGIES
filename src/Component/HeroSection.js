@@ -670,87 +670,93 @@ const ITServicesWebsite = () => {
       `}</style>
 
       {/* Hero Section */}
-      <section id="home" className="hero">
-        <div className="container">
-          <motion.div
-            className="row align-items-center"
-            initial="initial"
-            animate="animate"
-            variants={staggerContainer}
+     {/* Hero Section */}
+<section id="home" className="hero">
+  <div className="container">
+    <motion.div
+      className="row align-items-center"
+      initial="initial"
+      animate="animate"
+      variants={staggerContainer}
+    >
+      {/* SVG comes first on mobile */}
+      <div className="col-lg-6 order-1 order-md-2 mb-5 mb-lg-0">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
+          animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+          transition={{
+            duration: 1,
+            delay: 0.3,
+            type: "spring",
+            stiffness: 100,
+          }}
+          style={{ height: "450px" }}
+        >
+          <HeroIllustration />
+        </motion.div>
+      </div>
+
+      {/* Text comes second on mobile */}
+      <div className="col-lg-6 order-2 order-md-1">
+        <motion.h1 variants={fadeInUp}>
+          Crafting Digital Excellence
+        </motion.h1>
+        <motion.p variants={fadeInUp}>
+          We transform innovative ideas into powerful digital solutions.
+          From cutting-edge mobile apps to complex web platforms, we
+          deliver technology that drives business growth and creates
+          exceptional user experiences.
+        </motion.p>
+
+        {/* Buttons - Responsive & Centered */}
+        <motion.div
+          variants={fadeInUp}
+          className="d-flex gap-3 flex-wrap justify-content-center justify-content-lg-start mt-3"
+        >
+          <motion.button
+            className="btn btn-primary btn-lg px-4 py-2"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <div className="col-lg-6">
-              <motion.h1 variants={fadeInUp}>
-                Crafting Digital Excellence
-              </motion.h1>
-              <motion.p variants={fadeInUp}>
-                We transform innovative ideas into powerful digital solutions.
-                From cutting-edge mobile apps to complex web platforms, we
-                deliver technology that drives business growth and creates
-                exceptional user experiences.
-              </motion.p>
-              <motion.div
-                variants={fadeInUp}
-                className="d-flex gap-3 flex-wrap"
-              >
-                <motion.button
-                  className="btn btn-primary btn-lg"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Get Started Today
-                </motion.button>
-                <motion.button
-                  className="btn btn-outline-primary btn-lg"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  View Our Work
-                </motion.button>
-              </motion.div>
+            Get Started Today
+          </motion.button>
+          <motion.button
+            className="btn btn-outline-primary btn-lg px-4 py-2"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            View Our Work
+          </motion.button>
+        </motion.div>
 
-              {/* Hero Stats */}
-              <motion.div className="hero-stats" variants={fadeInUp}>
-                <div className="row">
-                  {stats.map((stat, index) => (
-                    <div key={index} className="col-6 col-md-3">
-                      <div className="stat-item">
-                        <motion.span
-                          className="stat-number"
-                          initial={{ opacity: 0, scale: 0.5 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{
-                            delay: 0.8 + index * 0.1,
-                            duration: 0.5,
-                          }}
-                        >
-                          {stat.number}
-                        </motion.span>
-                        <span className="stat-label">{stat.label}</span>
-                      </div>
-                    </div>
-                  ))}
+        {/* Hero Stats */}
+        <motion.div className="hero-stats mt-4" variants={fadeInUp}>
+          <div className="row">
+            {stats.map((stat, index) => (
+              <div key={index} className="col-6 col-md-3">
+                <div className="stat-item">
+                  <motion.span
+                    className="stat-number"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      delay: 0.8 + index * 0.1,
+                      duration: 0.5,
+                    }}
+                  >
+                    {stat.number}
+                  </motion.span>
+                  <span className="stat-label">{stat.label}</span>
                 </div>
-              </motion.div>
-            </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </motion.div>
+  </div>
+</section>
 
-            <div className="col-lg-6">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
-                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                transition={{
-                  duration: 1,
-                  delay: 0.3,
-                  type: "spring",
-                  stiffness: 100,
-                }}
-                style={{ height: "450px" }}
-              >
-                <HeroIllustration />
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Bootstrap Bundle JS */}
 
