@@ -1,123 +1,85 @@
 import React from "react";
-import "../Styles/Portfolio.css";
 import { motion } from "framer-motion";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "../Styles/Service.css";
 
-const Portfolio = () => {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: "easeOut" },
-  };
+// Animation variants
+const fadeInUp = {
+  initial: { opacity: 0, y: 40 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5, ease: "easeOut" }
+};
 
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
+const staggerContainer = {
+  animate: {
+    transition: { staggerChildren: 0.15 }
+  }
+};
 
-  // Unique portfolio projects
-  const projects = [
-    // MERN Projects
-    {
-      title: "SmartShop",
-      category: "MERN E-Commerce",
-      description: "Full-featured e-commerce web app with product search, cart, payments, and admin panel.",
-      tech: ["React", "Node.js", "Express", "MongoDB", "Stripe API"],
-    },
-    {
-      title: "TaskFlow",
-      category: "MERN Productivity Tool",
-      description: "Kanban-style task manager with drag-and-drop, real-time collaboration, and notifications.",
-      tech: ["React", "Redux", "Express", "MongoDB", "Socket.IO"],
-    },
-    {
-      title: "MediConnect",
-      category: "MERN Healthcare",
-      description: "Doctor-patient booking platform with secure video consultations and e-prescriptions.",
-      tech: ["React", "Node.js", "Express", "MongoDB", "WebRTC"],
-    },
-    {
-      title: "FoodieHub",
-      category: "MERN Food Delivery",
-      description: "Food ordering system with live order tracking, restaurant dashboard, and customer ratings.",
-      tech: ["React", "Express", "MongoDB", "Node.js", "Google Maps API"],
-    },
-    {
-      title: "EduPortal",
-      category: "MERN LMS",
-      description: "Learning platform with video courses, quizzes, and student progress tracking.",
-      tech: ["React", "Redux Toolkit", "Node.js", "MongoDB", "Firebase"],
-    },
+const scaleOnHover = {
+  whileHover: { scale: 1.05, boxShadow: "0 10px 20px rgba(0,0,0,0.12)" },
+  transition: { type: "spring", stiffness: 300 }
+};
 
-    // AI/ML Projects
-    {
-      title: "VisionAI",
-      category: "AI - Computer Vision",
-      description: "Image recognition system for detecting objects, people, and products in real-time.",
-      tech: ["Python", "TensorFlow", "OpenCV", "React"],
-    },
-    {
-      title: "ChatGenie",
-      category: "AI - NLP",
-      description: "Smart chatbot for customer support with sentiment analysis and multilingual responses.",
-      tech: ["Node.js", "Python", "NLTK", "React"],
-    },
-    {
-      title: "PredictX",
-      category: "AI - Predictive Analytics",
-      description: "Sales forecasting platform powered by machine learning models and real-time dashboards.",
-      tech: ["Python", "Pandas", "Scikit-learn", "React"],
-    },
-    {
-      title: "VoiceMate",
-      category: "AI - Speech Recognition",
-      description: "Voice-to-text and command recognition app for productivity and accessibility.",
-      tech: ["Python", "TensorFlow", "React Native", "Firebase"],
-    },
-    {
-      title: "HealthAI",
-      category: "AI - Healthcare",
-      description: "AI model for early disease detection using medical images and patient data.",
-      tech: ["Python", "Keras", "Flask", "MongoDB"],
-    },
+// Service categories (expandable to 150+)
+const serviceCategories = {
+  "Software Development": [
+    "Custom Software Development",
+    "Mobile App Development",
+    "Web App Development",
+    "Frontend Development",
+    "Backend Development",
+    "Full-Stack Development",
+    "API Development",
+    "Progressive Web Apps",
+    "Microservices Architecture",
+    "Cross-Platform Development"
+    // ➝ add ~30+ more
+  ],
+  "Cloud & DevOps": [
+    "Cloud Migration",
+    "AWS Solutions",
+    "Azure Solutions",
+    "Google Cloud Solutions",
+    "Serverless Computing",
+    "DevOps Consulting",
+    "CI/CD Pipelines",
+    "Infrastructure as Code",
+    "Containerization with Docker",
+    "Kubernetes Management"
+    // ➝ add ~20+ more
+  ],
+  "AI & Machine Learning": [
+    "Predictive Analytics",
+    "Natural Language Processing",
+    "Computer Vision",
+    "Recommendation Engines",
+    "Chatbot Development",
+    "Fraud Detection Systems",
+    "AI Model Deployment",
+    "Deep Learning Solutions",
+    "Data Science Consulting",
+    "Voice Recognition"
+    // ➝ add ~20+ more
+  ],
 
-    // More Projects (IoT, Blockchain, etc.)
-    {
-      title: "BlockPay",
-      category: "Blockchain",
-      description: "Decentralized payment system with smart contracts and crypto wallet integration.",
-      tech: ["Solidity", "Web3.js", "React", "Node.js"],
-    },
-    {
-      title: "SmartHome Hub",
-      category: "IoT",
-      description: "IoT-based home automation with real-time device monitoring and control.",
-      tech: ["React", "MQTT", "Node.js", "Raspberry Pi"],
-    },
-    {
-      title: "TravelGo",
-      category: "Travel & Booking",
-      description: "Travel booking platform with real-time flight/hotel search and booking engine.",
-      tech: ["Next.js", "Node.js", "MongoDB", "GraphQL"],
-    },
-    {
-      title: "AgriSense",
-      category: "AI + IoT",
-      description: "Smart agriculture solution with crop monitoring, irrigation alerts, and yield prediction.",
-      tech: ["Python", "TensorFlow", "React", "IoT Sensors"],
-    },
-    {
-      title: "StreamBox",
-      category: "Media & Entertainment",
-      description: "Video streaming app with subscription management and content recommendations.",
-      tech: ["React", "Node.js", "MongoDB", "AWS S3"],
-    },
-  ];
+ 
+};
 
+// Flatten categories into services array
+const services = Object.entries(serviceCategories).flatMap(([category, items]) =>
+  items.map((title, idx) => ({
+    title,
+    description: `${title} tailored to meet your business needs with scalability, performance, and innovation.`,
+    icon: <i className="bi bi-lightning-charge" style={{ fontSize: '2.5rem' }} />,
+    features: ["Expert Consultation", "Best Practices", "Scalable Solutions", "Ongoing Support"],
+    color: ["#007bff", "#28a745", "#ffc107", "#dc3545", "#6f42c1", "#20c997"][idx % 6]
+  }))
+);
+
+const Services = () => {
   return (
-    <section id="work" className="section">
+    <section id="services" className="section py-5 bg-light">
       <div className="container">
         {/* Section Title */}
         <motion.div
@@ -125,15 +87,15 @@ const Portfolio = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          className="text-center mb-5"
         >
-          <h2 className="section-title">Our Work</h2>
-          <p className="section-subtitle">
-            Explore a selection of the digital products we've designed and
-            developed across various domains.
+          <h2 className="section-title fw-bold">Our Services</h2>
+          <p className="section-subtitle text-muted">
+            We offer comprehensive digital solutions to help your business thrive in the modern world. From concept to deployment, we're your trusted technology partner.
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Services Cards Grid */}
         <motion.div
           className="row g-4"
           initial="initial"
@@ -141,24 +103,33 @@ const Portfolio = () => {
           variants={staggerContainer}
           viewport={{ once: true }}
         >
-          {projects.map((item, index) => (
-            <div key={index} className="col-md-6">
+          {services.map((service, index) => (
+            <div key={index} className="col-lg-3 col-md-6">
               <motion.div
-                className="card h-100 shadow-sm border-0"
                 variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                {...scaleOnHover}
+                className="h-100"
               >
-                <div className="card-body">
-                  <p className="text-muted small mb-1">{item.category}</p>
-                  <h5 className="card-title">{item.title}</h5>
-                  <p className="card-text">{item.description}</p>
-                  <div className="mt-3 d-flex flex-wrap gap-2">
-                    {item.tech.map((tech, idx) => (
-                      <span key={idx} className="badge bg-light text-dark">
-                        {tech}
-                      </span>
-                    ))}
+                <div className="card shadow-sm rounded-4 h-100 border-0">
+                  <div className="card-body d-flex flex-column">
+                    <div
+                      className="mb-3"
+                      style={{ color: service.color, fontSize: '3rem', lineHeight: 1 }}
+                    >
+                      {service.icon}
+                    </div>
+                    <h5 className="card-title fw-bold">{service.title}</h5>
+                    <p className="card-text flex-grow-1 text-muted" style={{ fontSize: '0.95rem' }}>
+                      {service.description}
+                    </p>
+                    <ul className="list-unstyled mt-3 mb-0">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="mb-1">
+                          <i className="bi bi-check-circle-fill text-success me-2"></i>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </motion.div>
@@ -170,4 +141,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default Services;
