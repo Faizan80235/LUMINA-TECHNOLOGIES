@@ -39,7 +39,7 @@ const Contact = () => {
               </div>
               <div className="p-4 bg-white shadow-sm rounded-4">
                 <h6 className="fw-bold mb-1">📧 Email</h6>
-                <p className="text-muted mb-0">contact@lumina.com</p>
+                <p className="text-muted mb-0">contact@Lustrix Software Solutions</p>
               </div>
               <div className="p-4 bg-white shadow-sm rounded-4">
                 <h6 className="fw-bold mb-1">📞 Phone</h6>

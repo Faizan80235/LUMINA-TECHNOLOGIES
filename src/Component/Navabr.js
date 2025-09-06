@@ -22,7 +22,7 @@ function Navbar() {
       <div className="container">
         {/* Brand */}
         <NavLink to="/" className="navbar-brand fw-bold fs-3 text-primary">
-          LUMINA TECHNOLOGIES
+       Lustrix Software Solutions
         </NavLink>
 
         {/* Toggler */}

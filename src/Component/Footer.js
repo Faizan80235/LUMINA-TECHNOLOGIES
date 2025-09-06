@@ -15,7 +15,7 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h5 className="fw-bold text-uppercase">Lumina Technologies</h5>
+            <h5 className="fw-bold text-uppercase">Lustrix Software Solutions</h5>
             <p className="small">
               Driving innovation through technology solutions in AI, web,
               mobile, and cloud. We deliver excellence and empower businesses to
