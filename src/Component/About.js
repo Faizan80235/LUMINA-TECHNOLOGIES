@@ -58,7 +58,7 @@ const About = () => {
         >
           <br></br>
           <br></br>
-          <h1 className="display-4 fw-bold text-primary mb-3">About Lumina Technologied</h1>
+          <h1 className="display-4 fw-bold text-primary mb-3">About Lumina Technologies</h1>
           <p className="lead text-secondary">
             Bridging technology and business to create lasting digital impact.
           </p>
