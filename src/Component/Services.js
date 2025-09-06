@@ -1,12 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "../Styles/Service.css"
-// Dummy icons, replace with your real icons or SVGs
-const MobileIcon = () => <i className="bi bi-phone" style={{ fontSize: '2.5rem' }} />;
-const ServerIcon = () => <i className="bi bi-server" style={{ fontSize: '2.5rem' }} />;
-const CodeIcon = () => <i className="bi bi-code-slash" style={{ fontSize: '2.5rem' }} />;
-const DesignIcon = () => <i className="bi bi-palette" style={{ fontSize: '2.5rem' }} />;
+import "../Styles/Service.css";
 
 // Animation variants
 const fadeInUp = {
@@ -26,38 +21,100 @@ const scaleOnHover = {
   transition: { type: "spring", stiffness: 300 }
 };
 
- const Services = () => {
-  const services = [
-    {
-      title: "Mobile App Development",
-      description: "Native and cross-platform mobile applications that deliver exceptional user experiences across iOS and Android platforms.",
-      icon: <MobileIcon />,
-      features: ["React Native & Flutter", "Native iOS & Android", "App Store Deployment", "Performance Optimization"],
-      color: "#007bff"
-    },
-    {
-      title: "Backend Development",
-      description: "Robust, scalable server-side solutions that power your applications with reliability, security, and high performance.",
-      icon: <ServerIcon />,
-      features: ["Node.js & Python", "Cloud Architecture", "Database Design", "API Development"],
-      color: "#28a745"
-    },
-    {
-      title: "Frontend Development",
-      description: "Modern, responsive web applications built with cutting-edge technologies and industry best practices.",
-      icon: <CodeIcon />,
-      features: ["React & Vue.js", "TypeScript", "Progressive Web Apps", "Responsive Design"],
-      color: "#ffc107"
-    },
-    {
-      title: "UI/UX Design",
-      description: "User-centered design solutions that combine beautiful aesthetics with intuitive functionality for optimal engagement.",
-      icon: <DesignIcon />,
-      features: ["User Research", "Prototyping", "Design Systems", "Usability Testing"],
-      color: "#dc3545"
-    }
-  ];
+// Service categories (expandable to 150+)
+const serviceCategories = {
+  "Software Development": [
+    "Custom Software Development",
+    "Mobile App Development",
+    "Web App Development",
+    "Frontend Development",
+    "Backend Development",
+    "Full-Stack Development",
+    "API Development",
+    "Progressive Web Apps",
+    "Microservices Architecture",
+    "Cross-Platform Development"
+    // ➝ add ~30+ more
+  ],
+  "Cloud & DevOps": [
+    "Cloud Migration",
+    "AWS Solutions",
+    "Azure Solutions",
+    "Google Cloud Solutions",
+    "Serverless Computing",
+    "DevOps Consulting",
+    "CI/CD Pipelines",
+    "Infrastructure as Code",
+    "Containerization with Docker",
+    "Kubernetes Management"
+    // ➝ add ~20+ more
+  ],
+  "AI & Machine Learning": [
+    "Predictive Analytics",
+    "Natural Language Processing",
+    "Computer Vision",
+    "Recommendation Engines",
+    "Chatbot Development",
+    "Fraud Detection Systems",
+    "AI Model Deployment",
+    "Deep Learning Solutions",
+    "Data Science Consulting",
+    "Voice Recognition"
+    // ➝ add ~20+ more
+  ],
+  "Cybersecurity": [
+    "Vulnerability Assessment",
+    "Penetration Testing",
+    "Threat Monitoring",
+    "Data Encryption",
+    "Compliance Audits",
+    "Identity & Access Management",
+    "Incident Response",
+    "Cloud Security",
+    "Zero Trust Solutions",
+    "SOC Services"
+    // ➝ add ~20+ more
+  ],
+  "Consulting & Support": [
+    "IT Strategy Consulting",
+    "Digital Transformation",
+    "System Integration",
+    "Risk Management",
+    "Legacy System Modernization",
+    "Business Process Automation",
+    "Change Management",
+    "Ongoing Maintenance",
+    "24/7 Technical Support",
+    "Version Upgrades"
+    // ➝ add ~20+ more
+  ],
+  "Emerging Tech": [
+    "Blockchain Development",
+    "NFT Platforms",
+    "Web3 Solutions",
+    "IoT Solutions",
+    "AR/VR Applications",
+    "Metaverse Development",
+    "Robotic Process Automation",
+    "Digital Twins",
+    "Quantum Computing (PoC)",
+    "Edge Computing"
+    // ➝ add ~20+ more
+  ]
+};
 
+// Flatten categories into services array
+const services = Object.entries(serviceCategories).flatMap(([category, items]) =>
+  items.map((title, idx) => ({
+    title,
+    description: `${title} tailored to meet your business needs with scalability, performance, and innovation.`,
+    icon: <i className="bi bi-lightning-charge" style={{ fontSize: '2.5rem' }} />,
+    features: ["Expert Consultation", "Best Practices", "Scalable Solutions", "Ongoing Support"],
+    color: ["#007bff", "#28a745", "#ffc107", "#dc3545", "#6f42c1", "#20c997"][idx % 6]
+  }))
+);
+
+const Services = () => {
   return (
     <section id="services" className="section py-5 bg-light">
       <div className="container">
@@ -120,4 +177,5 @@ const scaleOnHover = {
     </section>
   );
 };
-export default Services
+
+export default Services;
